@@ -20,6 +20,10 @@ node('mac') {
         }
     }
 
+    stage ('init editor') {
+        sh 'npm run install'
+    }
+
     stage ('update engine') {
         if (Boolean.parseBoolean(env.EDITOR_UPDATE_ENGINE)) {
             sh 'npm run checkout'
@@ -29,7 +33,6 @@ node('mac') {
     }
 
     stage ('publish editor') {
-        sh 'npm run install'
         sh 'npm run generate'
 
         if (Boolean.parseBoolean(env.EDITOR_CODESIGN)) {

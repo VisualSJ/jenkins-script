@@ -20,6 +20,10 @@ node('windows') {
         }
     }
 
+    stage ('init editor') {
+        bat 'npm run install'
+    }
+
     stage ('update engine') {
         if (Boolean.parseBoolean(env.EDITOR_UPDATE_ENGINE)) {
             bat 'npm run checkout'
@@ -29,7 +33,6 @@ node('windows') {
     }
 
     stage ('publish editor') {
-        bat 'npm run install'
         bat 'npm run generate'
 
         if (Boolean.parseBoolean(env.EDITOR_CODESIGN)) {

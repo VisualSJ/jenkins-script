@@ -42,7 +42,7 @@ node('mac') {
 
         if (Boolean.parseBoolean(env.EDITOR_UPLOAD_FTP)) {
 
-            if (Boolean.parseBoolean(env.EDITOR_DAILY) {
+            if (Boolean.parseBoolean(env.EDITOR_DAILY)) {
                 sh 'npm run pack -- --without codesign,package --daily'
             } else {
                 sh 'npm run pack -- --without codesign,package'

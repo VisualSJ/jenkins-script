@@ -32,17 +32,23 @@ node('mac') {
         }
     }
 
-    stage ('publish editor') {
+    stage ('generate') {
         sh 'npm run generate'
+    }
 
+    stage ('codesign') {
         if (Boolean.parseBoolean(env.EDITOR_CODESIGN)) {
             sh 'npm run pack -- -without package,ftp'
         } else {
             echo 'skip codesign'
         }
+    }
 
+    stage ('package') {
         sh 'npm run pack -- --without codesign,ftp'
+    }
 
+    stage ('upload ftp') {
         if (Boolean.parseBoolean(env.EDITOR_UPLOAD_FTP)) {
 
             if (Boolean.parseBoolean(env.EDITOR_DAILY)) {

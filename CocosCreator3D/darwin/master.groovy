@@ -1,5 +1,5 @@
 properties([parameters([
-  string(name: 'EDITOR_BUILD_BRANCH', defaultValue: 'master', description: '构建的分支(对应 GitHub 上的 branch )'),
+  string(name: 'EDITOR_BUILD_BRANCH', defaultValue: 'v1.0.0', description: '构建的分支(对应 GitHub 上的 branch )'),
   booleanParam(name: 'EDITOR_CLEAR', defaultValue: true, description: '是否清空仓库'),
   booleanParam(name: 'EDITOR_UPDATE_ENGINE', defaultValue: true, description: '是否强制更新 engine 仓库'),
   booleanParam(name: 'EDITOR_CODESIGN', defaultValue: true, description: '是否需要签名'),
@@ -42,7 +42,7 @@ node('mac') {
 
         if (Boolean.parseBoolean(env.EDITOR_UPLOAD_FTP)) {
 
-            if (Boolean.parseBoolean(env.EDITOR_DAILY) {
+            if (Boolean.parseBoolean(env.EDITOR_DAILY)) {
                 sh 'npm run pack -- --without codesign,package --daily'
             } else {
                 sh 'npm run pack -- --without codesign,package'

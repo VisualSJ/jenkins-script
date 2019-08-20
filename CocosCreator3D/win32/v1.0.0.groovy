@@ -32,29 +32,6 @@ node('windows') {
         }
     }
 
-    stage ('publish editor') {
-        bat 'npm run generate'
-
-        if (Boolean.parseBoolean(env.EDITOR_CODESIGN)) {
-            bat 'npm run pack -- -without package,ftp'
-        } else {
-            echo 'skip codesign'
-        }
-
-        bat 'npm run pack -- --without codesign,ftp'
-
-        if (Boolean.parseBoolean(env.EDITOR_UPLOAD_FTP)) {
-
-            if (Boolean.parseBoolean(env.EDITOR_DAILY)) {
-                bat 'npm run pack -- --without codesign,package --daily'
-            } else {
-                bat 'npm run pack -- --without codesign,package'
-            }
-        } else {
-            echo 'skip upload ftp'
-        }
-    }
-
     stage ('generate') {
         bat 'npm run generate'
     }

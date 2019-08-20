@@ -21,7 +21,7 @@ node('mac') {
     }
 
     stage ('init editor') {
-        sh 'npm run install'
+        sh 'npm install'
     }
 
     stage ('update engine') {

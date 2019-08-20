@@ -21,7 +21,7 @@ node('windows') {
     }
 
     stage ('init editor') {
-        bat 'npm run install'
+        bat 'npm install'
     }
 
     stage ('update engine') {

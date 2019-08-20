@@ -7,7 +7,7 @@ properties([parameters([
   booleanParam(name: 'EDITOR_DAILY', defaultValue: true, description: '是否放到 daily 文件夹下'),
 ])])
 
-node('mac') {
+node('windows') {
     stage ('checkout code'){
         git branch: "${EDITOR_BUILD_BRANCH}", url: 'git@github.com:cocos-creator/editor-3d.git'
     }

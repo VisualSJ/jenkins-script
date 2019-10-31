@@ -38,7 +38,7 @@ node('mac') {
 
     stage ('codesign') {
         if (Boolean.parseBoolean(env.EDITOR_CODESIGN)) {
-            sh 'npm run pack -- -without package,ftp'
+            sh 'npm run pack -- --without package,ftp'
         } else {
             echo 'skip codesign'
         }
